@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <script src="axios.min.js"></script>
+    <script src="qs.min.js"></script>
+</head>
+
+<body>
+
+    <form id="workflowParameterForm">
+        <input type="text" id="parameterForWorkflow"></input>
+        <button type="submit">Start Workflow</button>
+    </form>
+
+    <div id="responseStatus"></div>
+
+</body>
+
+<script>
+    window.onload = (event) => {
+
+        var formForSubmission = document.getElementById("workflowParameterForm")
+
+        formForSubmission.addEventListener("submit", function (evt) {
+            evt.preventDefault()
+
+            var inputParameter = document.getElementById("parameterForWorkflow").value
+            
+            axios.post("CALL_LASERFICHE_WORKFLOW.php", Qs.stringify({"inputParameter": inputParameter}))
+            .then(function(response) {
+                document.getElementById("responseStatus").innerHTML = response.data
+            })
+        })
+
+    }
+</script>
+
+</html>
