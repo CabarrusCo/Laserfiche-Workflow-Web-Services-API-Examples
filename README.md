@@ -32,7 +32,7 @@ All these example are Windows Test Server to Windows Test Server only. Other spe
 + What type of Auth system you use for the Workflow Web Services(If Any). We use NTLM auth in these examples because they are just Test Server to Test Server, so these examples have to be tweaked if using Kerberos for Auth.
 + Restructing certain aspects of cURL in certain examples.
 
-Each example will be a separate irectory and each directory will have it's own README.md file.
+Each example will be a separate directory and each directory will have it's own README.md file.
 
 ### Examples we would love to see added
 
