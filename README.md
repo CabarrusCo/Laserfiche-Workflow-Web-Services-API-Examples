@@ -27,7 +27,7 @@ In this repository, we provide examples in
 + Javascript to PHP
 + Javascript to a Python Webhook
 
-Each example will be a seperate directory and each directory will have it's own README.md file.
+Each example will be a separate irectory and each directory will have it's own README.md file.
 
 ### Examples we would love to see added
 
