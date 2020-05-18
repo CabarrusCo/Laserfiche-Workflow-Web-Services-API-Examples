@@ -25,7 +25,7 @@ In this repository, we provide examples in
 + PHP
 + Python
 + Javascript to PHP
-+ Javascript to a Python Webhook
++ Python watchdog for monitoring folders.
 
 Each example will be a separate irectory and each directory will have it's own README.md file.
 
