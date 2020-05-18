@@ -27,6 +27,11 @@ In this repository, we provide examples in
 + Javascript to PHP
 + Python watchdog for monitoring folders.
 
+All these example are Windows Test Server to Windows Test Server only. Other special considerations may have to be made depending on.
+
++ What type of Auth system you use for the Workflow Web Services(If Any)
++ Restructing certain aspects of cURL in certain examples.
+
 Each example will be a separate irectory and each directory will have it's own README.md file.
 
 ### Examples we would love to see added
