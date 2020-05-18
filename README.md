@@ -17,6 +17,7 @@ The Business & Location Innovative Services (BLIS) team for Cabarrus County cons
 Our team is responsible for software development and support for the [County](https://www.cabarruscounty.us/departments/information-technology). We work under the direction of the Chief Information Officer.
 
 ### About Laserfiche Workflow Web Services
+---
 
 The Laserfiche Workflow Web Services API allows you to run and call Workflow from any application, Web or otherwise. The problem is there is hardly any documentation out there for the Workflow Web Services, and the documentation that is out there is mainly written around .NET technologies.
 
