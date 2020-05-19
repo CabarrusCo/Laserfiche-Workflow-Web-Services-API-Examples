@@ -1,7 +1,7 @@
 ### Javascript to PHP AJAX example
 This example is a Javascript AJAX to PHP backend example.
 
-Javascript passes the parameter to a PHP server, then PHP echos it back up to the front end. The Javascript uses two libraries for
+Javascript passes the parameter to a PHP script, then PHP echos back up to the front end. The Javascript uses two libraries for
 handling the AJAX call, AXIOS and qs.
 
 ## Things to consider
