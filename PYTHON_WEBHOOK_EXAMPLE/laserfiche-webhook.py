@@ -5,7 +5,7 @@ import webhook_listener
 
 
 
-def process_post_request(request, *args, **kwargs):
+def process_get_request(request, *args, **kwargs):
 
     workflow_url = "http://WORKFLOW_URL_HERE"
 
@@ -15,7 +15,7 @@ def process_post_request(request, *args, **kwargs):
 
     return
 
-webhooks = webhook_listener.Listener(handlers={"GET": process_post_request})
+webhooks = webhook_listener.Listener(handlers={"GET": process_get_request})
 
 webhooks.start()
 
