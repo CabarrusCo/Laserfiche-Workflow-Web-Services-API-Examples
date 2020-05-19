@@ -4,7 +4,7 @@ This example shows how to setup Python as Webhook. The Webhook then GETs paramet
 
 ### Things to consider
 
-+ This example assumes that you have to authenticate to IIS. It uses requests_nltm for this setup(test server to test server). If your server is setup for anonymous auth, you may not NEED the requests_ntlm auth part or may have to use a different library it if you're using Kerberos.
++ This example assumes that you have to authenticate to IIS. It uses requests_nltm for this setup(test server to test server). If your server is setup for anonymous auth, you may not NEED the requests_ntlm auth part or may have to tweak it depending on Auth Method.
 + The credentials are stored in script. **THIS IS FOR EXAMPLE ONLY. DO NOT STORE credentials in the real life script.** Please store them somewhere server side encrypted.
 
 ### Other documentation
