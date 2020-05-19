@@ -30,9 +30,9 @@ In this repository, we provide examples in
 
 All these example are Windows Test Server to Windows Test Server only. Other special considerations may have to be made depending on.
 
-+ What type of Auth system you use for the Workflow Web Services(If Any). We use NTLM auth in these examples because they are just Test Server to Test Server, so these examples have to be tweaked if using Kerberos for Auth.
++ What type of Auth system you use for the Workflow Web Services(If Any). We use NTLM auth in these examples. So these examples have to be tweaked if using a different auth method.
 + Restructuring certain aspects of cURL in certain examples.
-+ For incorporating SSPI into the mix instead of just plain ol NTLM auth in the Python examples, please check out this package located here https://pypi.org/project/requests-negotiate-sspi/
+
 
 Each example will be a separate directory and each directory will have it's own README.md file.
 
