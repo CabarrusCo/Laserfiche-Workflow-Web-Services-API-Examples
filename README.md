@@ -19,7 +19,7 @@ Our team is responsible for software development and support for the [County](ht
 ### About Laserfiche Workflow Web Services
 ---
 
-The Laserfiche Workflow Web Services API allows you to run and call Workflow from any application, Web or otherwise. The problem is there is hardly any documentation out there for the Workflow Web Services, and the documentation that is out there is mainly written around .NET technologies.
+The Laserfiche Workflow Web Services API allows you to run and call Workflow from any application, Web or otherwise. The problem is barely any documentation exists for the Workflow Web Services API, and the documentation that is out there is mainly written around .NET technologies.
 
 In this repository, we provide examples in
 
