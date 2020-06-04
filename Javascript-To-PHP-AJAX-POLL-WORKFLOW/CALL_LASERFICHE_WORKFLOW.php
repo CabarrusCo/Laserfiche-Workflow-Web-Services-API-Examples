@@ -66,7 +66,7 @@
                         $textFileStatus = $textFileStatus[1];
                         $textFileStatus = str_replace(".txt", "", $textFileStatus);
                         echo "WORKFLOW FINISHED WITH STATUS OF ". $textFileStatus;
-                        unlink($textFile);
+                        unlink("WORKFLOW_TEXT_FILES/".$textFile);
                     } else {
                         if($loopCounter <= 120) {
                             time.sleep(1);
