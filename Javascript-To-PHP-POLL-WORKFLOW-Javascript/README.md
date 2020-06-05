@@ -26,7 +26,7 @@ move it to the Success Array.
 ![All UUIDS at Level One](https://github.com/CabarrusCo/Laserfiche-Workflow-Web-Services-API-Examples/blob/master/Javascript-To-PHP-POLL-WORKFLOW-Javascript/Screenshots/LEVELONE.PNG)
 
 #### All UUIDS at Level Two
-![All UUIDS at Level One](https://github.com/CabarrusCo/Laserfiche-Workflow-Web-Services-API-Examples/blob/master/Javascript-To-PHP-POLL-WORKFLOW-Javascript/Screenshots/LEVELTWO.PNG)
+![All UUIDS at Level Two](https://github.com/CabarrusCo/Laserfiche-Workflow-Web-Services-API-Examples/blob/master/Javascript-To-PHP-POLL-WORKFLOW-Javascript/Screenshots/LevelTwo.PNG)
 
 ### Things to consider
 
