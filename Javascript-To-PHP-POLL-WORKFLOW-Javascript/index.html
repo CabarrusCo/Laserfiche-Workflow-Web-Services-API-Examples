@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <script src="axios.min.js"></script>
+    <script src="qs.min.js"></script>
+</head>
+
+<body>
+
+    <form id="workflowParameterForm">
+        <input type="text" id="parameterForWorkflow"></input>
+        <button type="submit" id="submitToWorkflow">Start Workflow And Wait For Completion</button>
+    </form>
+
+    <div id="IdsThatHaveNotReachedSuccess"></div><br><br>
+    <div id="IdsThatHaveReachedSuccess"></div>
+
+    <h3>UUIDs In Circulation</h3>
+    <textarea id="idsThatHaveNotReachedSuccess" cols="60" rows="10"></textarea>
+    <br>
+    <hr>
+    <br>
+    <h3>UUIDs Completed Successfully</h3>
+    <textarea id="idsThatHaveReachedSuccess" cols="60" rows="10"></textarea>
+
+</body>
+
+<script>
+    window.onload = (event) => {
+
+
+        var currentIdsInCirculation = []
+        var IdsAtSuccess = []
+
+        setInterval(grabIDStatuses, 30000)
+
+        var submitButton = document.getElementById("submitToWorkflow")
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function writeUUIDsToTextAreas() {
+
+
+            var textForTextAreaInCirculation = ""
+            var textForTextAreaSuccess = ""
+
+            for (var i = 0; i < currentIdsInCirculation.length; i++) {
+                textForTextAreaInCirculation = textForTextAreaInCirculation + currentIdsInCirculation[i].uuid +
+                    "--" + currentIdsInCirculation[i].status + "\r\n\r\n"
+            }
+
+            for (var i = 0; i < IdsAtSuccess.length; i++) {
+                textForTextAreaSuccess = textForTextAreaSuccess + IdsAtSuccess[i].uuid + "\r\n\r\n"
+            }
+
+
+
+            document.getElementById("idsThatHaveNotReachedSuccess").value = textForTextAreaInCirculation
+            document.getElementById("idsThatHaveReachedSuccess").value = textForTextAreaSuccess
+
+            submitButton.disabled = false
+        }
+
+        function grabIDStatuses() {
+
+            if (currentIdsInCirculation.length > 0) {
+
+                submitButton.disabled = true
+
+                let uuidFormData = new FormData()
+
+                uuidFormData.append("currentIdsInCirculation", JSON.stringify(currentIdsInCirculation))
+
+                axios.post("GRAB_UUID_STATUSES.php", uuidFormData)
+                    .then(function (response) {
+
+                        currentIdsInCirculation = response.data
+
+                        for (var i = currentIdsInCirculation.length - 1; i >= 0; i--) {
+                            var uuidStatus = currentIdsInCirculation[i].status
+
+                            if (uuidStatus == "SUCCESS") {
+                                var uuidObj = currentIdsInCirculation[i]
+                                currentIdsInCirculation.splice(i, 1)
+                                IdsAtSuccess.push(uuidObj)
+                            }
+                        }
+
+                        writeUUIDsToTextAreas()
+
+                    })
+            }
+
+        }
+
+        var formForSubmission = document.getElementById("workflowParameterForm")
+
+        formForSubmission.addEventListener("submit", function (evt) {
+
+            evt.preventDefault()
+
+            if (currentIdsInCirculation.length < 11) {
+
+                var inputParameter = document.getElementById("parameterForWorkflow").value
+                var uuid = uuidv4()
+
+                submitButton.disabled = true
+
+                axios.post("CALL_LASERFICHE_WORKFLOW.php", Qs.stringify({
+                        "inputParameter": inputParameter,
+                        "uuid": uuid
+                    }))
+                    .then(function (response) {
+
+                        submitButton.disabled = false
+
+                        if (response.data == 200) {
+
+                            currentIdsInCirculation.push({
+                                "uuid": uuid,
+                                "status": "STARTED"
+                            })
+
+
+                        }
+
+                        writeUUIDsToTextAreas()
+
+                    })
+
+            } else {
+                alert("NO MORE THAN 10 UUIDS ALLOWED IN CIRCULATION AT A TIME")
+            }
+
+
+        })
+
+    }
+</script>
+
+</html>
