@@ -25,6 +25,9 @@ move it to the Success Array.
 #### All UUIDS at Level One
 ![All UUIDS at Level One](https://github.com/CabarrusCo/Laserfiche-Workflow-Web-Services-API-Examples/blob/master/Javascript-To-PHP-POLL-WORKFLOW-Javascript/Screenshots/LEVELONE.PNG)
 
+#### All UUIDS at Level Two
+![All UUIDS at Level One](https://github.com/CabarrusCo/Laserfiche-Workflow-Web-Services-API-Examples/blob/master/Javascript-To-PHP-POLL-WORKFLOW-Javascript/Screenshots/LEVELTWO.PNG)
+
 ### Things to consider
 
 + This example assumes that you have to authenticate to IIS. It uses NTLM for this setup(Again, test server to test server). If your server is setup for anonymous auth, you may not NEED the NTLM auth part, or may have to tweak it depending on Auth Method
