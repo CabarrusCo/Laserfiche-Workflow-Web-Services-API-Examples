@@ -34,7 +34,7 @@
 
     $output = curl_exec($handle);
 	
-    $statusCode = curl_getinfo($handle, CURLINFO_HTTP_CODE); // v=w2D4iCzRW7E
+    $statusCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
     curl_close($handle);
 
@@ -44,5 +44,7 @@
 	} else {
 		echo "There was a problem starting workflow";
 	}
+
+// v=w2D4iCzRW7E
 
 ?>
