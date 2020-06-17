@@ -4,8 +4,6 @@ import json
 
 if __name__ == "__main__":
     
-    #Urj7Uw4TodA
-
     url = "http://WORKFLOW_URL_HERE"
     
     data = json.dumps({"ParameterCollection":[{"Name":"InputParameter", "Value":"Hello World!"}]})
@@ -14,7 +12,7 @@ if __name__ == "__main__":
     c.setopt(pycurl.URL, url)
 
     c.setopt(pycurl.HTTPHEADER, ['Content-Type: application/json', 
-                                 'Accept: application/json'])
+                                 'Accept: application/json']) #Urj7Uw4TodA
 
     c.setopt(pycurl.POST, 1)
     c.setopt(pycurl.POSTFIELDS, data)
