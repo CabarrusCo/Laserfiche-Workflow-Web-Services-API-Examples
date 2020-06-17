@@ -1,6 +1,7 @@
 import pycurl
 import json
 
+#v=Urj7Uw4TodA
 
 if __name__ == "__main__":
     
@@ -21,5 +22,3 @@ if __name__ == "__main__":
     c.setopt(pycurl.USERPWD, "DOMAIN\\XXXXXXXXX:XXXXXXXX")
     c.perform()
     c.close()
-
-    #v=Urj7Uw4TodA
