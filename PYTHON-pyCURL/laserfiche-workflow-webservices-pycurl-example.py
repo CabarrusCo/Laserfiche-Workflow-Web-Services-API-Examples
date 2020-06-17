@@ -12,7 +12,7 @@ if __name__ == "__main__":
     c.setopt(pycurl.URL, url)
 
     c.setopt(pycurl.HTTPHEADER, ['Content-Type: application/json', 
-                                 'Accept: application/json']) #v=Urj7Uw4TodA
+                                 'Accept: application/json']) 
 
     c.setopt(pycurl.POST, 1)
     c.setopt(pycurl.POSTFIELDS, data)
@@ -21,3 +21,5 @@ if __name__ == "__main__":
     c.setopt(pycurl.USERPWD, "DOMAIN\\XXXXXXXXX:XXXXXXXX")
     c.perform()
     c.close()
+
+    #v=Urj7Uw4TodA
