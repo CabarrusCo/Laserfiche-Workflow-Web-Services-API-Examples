@@ -34,7 +34,7 @@
 
     $output = curl_exec($handle);
 	
-    $statusCode = curl_getinfo($handle, CURLINFO_HTTP_CODE); // v=-A1_atkAQhY
+    $statusCode = curl_getinfo($handle, CURLINFO_HTTP_CODE); // v=URma_gu1aNE
 
     curl_close($handle);
 
