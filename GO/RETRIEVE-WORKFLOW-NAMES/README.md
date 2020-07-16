@@ -10,3 +10,10 @@ This example shows how to call the endpoint on Laserfiche server that houses all
 ### Other documentation
 
 + This example is our first attempt at interacting with Laserfiche with Go. We will upload an example of how to Start a workflow with Go and pass parameters soon.
+
+### Running and build
+
+```
+Run - go run main.go
+Build go build main.go
+```
