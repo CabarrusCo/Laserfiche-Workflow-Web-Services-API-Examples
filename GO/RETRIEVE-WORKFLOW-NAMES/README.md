@@ -1,6 +1,6 @@
 ### Go Grab All Workflow Names Example
 
-This example shows how to call the endpoint on Laserfiche server that houses all the workflow data. It will pull back all Workflow Names.
+This example shows how to call the endpoint on Laserfiche Workflow server that houses all the workflow information data. It will pull back all Workflow Names.
 
 ### Things to consider
 
