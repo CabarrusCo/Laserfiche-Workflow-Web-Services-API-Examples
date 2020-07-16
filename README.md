@@ -38,7 +38,7 @@ Each example will be a separate directory and each directory will have it's own 
 
 ### Go
 ---
-We have started learning Go here at Cabarrus County. We are slowly adding more Go scripts to show Laserfiche interaction over the next few Months as we dive more into it and also to help us learn as well and keep examples. Please feel free to help us make our Go code better :-).
+We have started learning Go here at Cabarrus County. We are slowly adding more Go scripts for Laserfiche interaction over the next few Months as we dive more into Go. This also helps us learn and retain examples for future use. Please feel free to help us make our Go code better as we learn :-).
 
 ### Examples we would love to see added
 ---
