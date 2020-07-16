@@ -15,5 +15,5 @@ This example shows how to call the endpoint on Laserfiche server that houses all
 
 ```
 Run - go run main.go
-Build go build main.go
+Build - go build main.go
 ```
