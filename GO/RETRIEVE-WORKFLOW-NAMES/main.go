@@ -37,7 +37,7 @@ func main() {
 	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
-		log.Println("Excepted 200, Got: ", res.StatusCode)
+		log.Println("Expected 200, Got: ", res.StatusCode)
 		return
 	}
 
