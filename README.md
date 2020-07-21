@@ -26,7 +26,7 @@ In this repository, we provide examples in
 + PHP
 + Python
 + Javascript to PHP
-+ Python watchdog for monitoring folders.
++ Go
 
 All these example are Windows Test Server to Windows Test Server only. Other special considerations may have to be made depending on.
 
