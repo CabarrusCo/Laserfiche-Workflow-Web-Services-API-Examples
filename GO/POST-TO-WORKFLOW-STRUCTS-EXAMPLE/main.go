@@ -3,26 +3,35 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/Azure/go-ntlmssp"
 )
 
-type Parameter struct {
+type workflowData struct {
+	ParameterCollection []parameter
+}
+
+type parameter struct {
 	Name  string `json:"Name"`
 	Value string `json:"Value"`
 }
 
-type workflowData struct {
-	ParameterCollection []Parameter
+type workflowResponse struct {
+	Fault      workflowFault `json:"fault"`
+	InstanceID interface{}   `json:"instanceId"`
+}
+type workflowFault struct {
+	Status     int    `json:"Status"`
+	Detail     string `json:"Detail"`
+	DetailCode int    `json:"DetailCode"`
 }
 
 func main() {
 
 	workflowInfo := workflowData{
-		ParameterCollection: []Parameter{
+		ParameterCollection: []parameter{
 			{
 				Name:  "Message",
 				Value: "Hello World!",
@@ -40,7 +49,7 @@ func main() {
 		return
 	}
 
-	url, user, password := "XXXXXXX", "XXXXXXXX", "XXXXXX"
+	url, user, password := "XXXXXX", "XXXXXXX", "XXXXXXXX"
 
 	client := &http.Client{
 		Transport: ntlmssp.Negotiator{
@@ -64,13 +73,17 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	wfResponse := workflowResponse{}
+	err = json.NewDecoder(resp.Body).Decode(&wfResponse)
 	if err != nil {
-		log.Println(err)
+		log.Println("ERROR DECODING RESPONSE")
+	}
+
+	if wfResponse.Fault.Status != 0 {
+		log.Println("PROBLEM STARTING WORKFLOW:: ", wfResponse.Fault.Detail)
 		return
 	}
 
-	//You can decode to JSON if you want
-	log.Println(string(body))
+	log.Println("WORKFLOW STARTED SUCCESSFULLY WITH INSTANCE ID:: ", wfResponse.InstanceID)
 
 }
