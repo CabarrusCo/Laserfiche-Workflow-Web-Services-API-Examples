@@ -73,6 +73,11 @@ func main() {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != 200 {
+		log.Println("EXPECTED STATUS CODE 200, GOT ", resp.StatusCode)
+		return
+	}
+
 	wfResponse := workflowResponse{}
 	err = json.NewDecoder(resp.Body).Decode(&wfResponse)
 	if err != nil {
