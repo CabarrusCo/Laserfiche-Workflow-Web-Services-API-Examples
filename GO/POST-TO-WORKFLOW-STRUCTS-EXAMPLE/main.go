@@ -20,7 +20,7 @@ type parameter struct {
 
 type workflowResponse struct {
 	Fault      workflowFault `json:"fault"`
-	InstanceID interface{}   `json:"instanceId"`
+	InstanceID string        `json:"instanceId"`
 }
 type workflowFault struct {
 	Status     int    `json:"Status"`
@@ -49,7 +49,7 @@ func main() {
 		return
 	}
 
-	url, user, password := "XXXXXX", "XXXXXXX", "XXXXXXXX"
+	url, user, password := "XXXXXXX", "XXXXX", "XXXXXX"
 
 	client := &http.Client{
 		Transport: ntlmssp.Negotiator{
