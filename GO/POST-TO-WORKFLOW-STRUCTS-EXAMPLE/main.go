@@ -82,6 +82,7 @@ func main() {
 	err = json.NewDecoder(resp.Body).Decode(&wfResponse)
 	if err != nil {
 		log.Println("ERROR DECODING RESPONSE")
+		return
 	}
 
 	if wfResponse.Fault.Status != 0 {
