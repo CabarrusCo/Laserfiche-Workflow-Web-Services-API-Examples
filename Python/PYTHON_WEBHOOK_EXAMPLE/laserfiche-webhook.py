@@ -3,8 +3,6 @@ import requests
 from requests_ntlm import HttpNtlmAuth
 import webhook_listener
 
-#v=EX09nRA-jE4
-
 def process_get_request(request, *args, **kwargs):
 
     workflow_url = "http://WORKFLOW_URL_HERE"
