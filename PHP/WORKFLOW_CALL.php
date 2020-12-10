@@ -1,7 +1,5 @@
 <?php
 
-    // v=w2D4iCzRW7E
-
     $handle = curl_init();
 
     $url = "http://WORKFLOW_URL_HERE";
