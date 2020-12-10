@@ -1,8 +1,6 @@
 import pycurl
 import json
 
-#v=f7y8F-2lZwQ
-
 if __name__ == "__main__":
     
     url = "http://WORKFLOW_URL_HERE"
