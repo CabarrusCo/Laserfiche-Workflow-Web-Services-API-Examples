@@ -2,94 +2,95 @@ package main
 
 import (
 	"bytes"
+	"context"
+	"crypto/tls"
 	"encoding/json"
-	"log"
+	"fmt"
 	"net/http"
 
-	"github.com/Azure/go-ntlmssp"
+	httpntlm "github.com/vadimi/go-http-ntlm/v2"
 )
 
-type workflowData struct {
-	ParameterCollection []parameter
+type StartWFRequest struct {
+	ParameterCollection []Parameter `json:"ParameterCollection"`
 }
 
-type parameter struct {
+type Parameter struct {
 	Name  string `json:"Name"`
 	Value string `json:"Value"`
 }
 
-type workflowResponse struct {
-	Fault      workflowFault `json:"fault"`
-	InstanceID string        `json:"instanceId"`
+type WFResponse struct {
+	Fault      Fault  `json:"fault"`
+	InstanceID string `json:"instanceId"`
 }
-type workflowFault struct {
+
+type Fault struct {
 	Status     int    `json:"Status"`
 	Detail     string `json:"Detail"`
 	DetailCode int    `json:"DetailCode"`
 }
 
 func main() {
-
-	workflowInfo := workflowData{
-		ParameterCollection: []parameter{
+	swfr := StartWFRequest{
+		ParameterCollection: []Parameter{
 			{
 				Name:  "Message",
-				Value: "Hello World!",
-			},
-			{
-				Name:  "MESSAGE TWO",
-				Value: "HELLO WORLD AGAIN!",
+				Value: "Hello World",
 			},
 		},
 	}
 
-	wfJSON, err := json.Marshal(workflowInfo)
+	wfJSON, err := json.Marshal(swfr)
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
 		return
 	}
 
-	url, user, password := "XXXXXXX", "XXXXX", "XXXXXX"
-
-	client := &http.Client{
-		Transport: ntlmssp.Negotiator{
-			RoundTripper: &http.Transport{},
+	client := http.Client{
+		Transport: &httpntlm.NtlmTransport{
+			Domain:   "XXX",
+			User:     "XXXXXXXX",
+			Password: "XXXXXX",
+			// Configure RoundTripper if necessary, otherwise DefaultTransport is used
+			RoundTripper: &http.Transport{
+				// provide tls config
+				TLSClientConfig: &tls.Config{},
+				// other properties RoundTripper, see http.DefaultTransport
+			},
 		},
 	}
 
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(wfJSON))
+	req, err := http.NewRequestWithContext(context.Background(), "POST", "workflowURLHere", bytes.NewBuffer(wfJSON))
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
 		return
 	}
-
-	req.SetBasicAuth(user, password)
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept", "application/json")
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
+		return
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		log.Println("EXPECTED STATUS CODE 200, GOT ", resp.StatusCode)
+		fmt.Printf("Wanted status code 200, got %v instead", resp.StatusCode)
 		return
 	}
 
-	wfResponse := workflowResponse{}
+	wfResponse := WFResponse{}
+
 	err = json.NewDecoder(resp.Body).Decode(&wfResponse)
 	if err != nil {
-		log.Println("ERROR DECODING RESPONSE")
+		fmt.Println(err)
 		return
 	}
 
 	if wfResponse.Fault.Status != 0 {
-		log.Println("PROBLEM STARTING WORKFLOW:: ", wfResponse.Fault.Detail)
+		fmt.Printf("Fault encountered while starting workflow %v", wfResponse.Fault.Detail)
 		return
 	}
 
-	log.Println("WORKFLOW STARTED SUCCESSFULLY WITH INSTANCE ID:: ", wfResponse.InstanceID)
-
+	fmt.Printf("Workflow started successfully with Instance ID %v", wfResponse.InstanceID)
 }
